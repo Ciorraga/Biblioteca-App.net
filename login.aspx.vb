@@ -39,7 +39,7 @@ Partial Class _login
                 Dim miCookie As New HttpCookie("userCookie")
                 miCookie.Values("usuario") = TBemail.Text
                 miCookie.Values("password") = TBpassw.Text
-                miCookie.Expires = DateTime.Now.AddMinutes(1)
+                miCookie.Expires = DateTime.Now.AddMinutes(30)
                 Response.Cookies.Add(miCookie)
             End If
 

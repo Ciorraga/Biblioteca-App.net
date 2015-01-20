@@ -1,6 +1,8 @@
 ﻿Option Explicit Off
 Imports System.Data
 Imports System.Web.Security
+Imports System.Web.UI.WebControls
+
 Partial Class _fRoles
     Inherits System.Web.UI.Page
     Dim us As String = Nothing
@@ -22,15 +24,20 @@ Partial Class _fRoles
         Dim DDLBusq As String
         Dim TEXTBusq As String
         If RB1.Checked Then
-            rbBusq = RB1.Text
+            rbBusq = "autores"
         ElseIf RB2.Checked Then
-            rbBusq = RB2.Text
+            rbBusq = "titulo"
         ElseIf RB3.Checked Then
-            rbBusq = RB3.Text
+            rbBusq = "editoriales"
         End If
         DDLBusq = DDLMaterial.SelectedValue
         TEXTBusq = TBBusq.Text
 
-        Response.Write(rbBusq & "," & DDLBusq & "," & TEXTBusq)
+        Dim miDs As DataSet = _control.obtenerConsulta(DDLBusq, rbBusq, TEXTBusq)
+
+        LVDatos.DataSource = miDs.Tables(0).DefaultView
+        LVDatos.DataBind()
+        Panel1.Visible = True
     End Sub
+
 End Class

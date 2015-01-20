@@ -34,7 +34,7 @@ function maximizar()
 </script>
 
 <head runat="server">
-  <title>IES Oretania.</title>
+  <title>Aplicación Biblioteca</title>
   <script src="https://code.jquery.com/jquery.js"></script>
         
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>

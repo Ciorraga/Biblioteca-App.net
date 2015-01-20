@@ -88,4 +88,23 @@ Public Class _control
         FormsAuthentication.RedirectToLoginPage()
     End Sub
 
+    Public Shared Function obtenerConsulta(ByVal tipo As String, ByVal tipo2 As String, ByVal texto As String) As DataSet
+        ' Devuelve un DataTable con el resultado de la busqueda filtreada
+        Dim sentencia As String = ""
+        Dim conexion As String = ConfigurationManager.ConnectionStrings("BibliotecaConnectionString").ToString
+
+        sentencia = "select obras.isbn,obras.titulo,obras.autores,obras.claseMaterial,editoriales.editorial from obras join editoriales on obras.idEditorial=editoriales.idEditorial where claseMaterial='" & tipo & "' and " & tipo2 & " LIKE '%" & texto & "%'"
+
+        Dim miCnx As New SqlConnection(conexion)
+        Dim miDT As New DataSet
+        Try
+            Dim miCmd As New SqlCommand(sentencia, miCnx)
+            Dim miAdt As New SqlDataAdapter(miCmd)
+            miAdt.Fill(miDT)
+        Catch ex As SystemException
+            Throw New System.Exception(ex.Message)
+        End Try
+        Return miDT
+    End Function
+
 End Class
