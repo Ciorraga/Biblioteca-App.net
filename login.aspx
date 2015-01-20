@@ -35,70 +35,60 @@ function maximizar()
 
 <head runat="server">
   <title>IES Oretania.</title>
+  <script src="https://code.jquery.com/jquery.js"></script>
+        
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css"/>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 </head>
 <body onload="maximizar();">
-   <form id="miForm" runat="server" style="font-family: Arial, Helvetica, sans-serif; font-size: small">
-    <h2>
-        MiAplicación - Acceso.
-        </h2>
-    <hr />
-    <h3>
-        Identificación del usuario.
-    </h3>
-    <table>
-      <tr>
-        <td>
-          E-mail:</td>
-        <td>
-          <asp:TextBox ID="TBemail" runat="server" Width="200px" /></td>
-        <td>
-          <asp:RequiredFieldValidator ID="RFVemail" 
-              ControlToValidate="TBemail"
-              Display="Dynamic" 
-              ErrorMessage="· Rellene la dirección de su e-mail." 
-              runat="server" />
-          <asp:CustomValidator ID="CVemail" runat="server" 
-              ErrorMessage="· La dirección e-mail no tiene el formato adecuado." 
-              ClientValidationFunction="ValidarEmail" ControlToValidate="TBemail" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-            Contraseña:</td>
-        <td>
-          <asp:TextBox ID="TBpassw" TextMode="Password" 
-              runat="server" Width="200px" />
-        </td>
-        <td>
-          <asp:RequiredFieldValidator ID="RFVcontraseña" 
-              ControlToValidate="TBpassw"
-              ErrorMessage="· Introduzca su contraseña." 
-              runat="server" Display="Dynamic" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Recordar en este equipo:</td>
-        <td>
-          <asp:CheckBox ID="CkBpersitente" runat="server" /></td>
-      </tr>
-      <tr>
-        <td>
-          <asp:Button ID="BTvalidar" OnClick="Validar" Text="Validar" runat="server" BackColor="Aquamarine" BorderColor="#507CD1" BorderStyle="Solid" 
-              BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="#284E98" />
-        </td>
-        <td align="right">
-           <asp:Button ID="Btregistrar" runat="server" Text="Registrarse" BackColor="Aquamarine" BorderColor="#507CD1" BorderStyle="Solid" 
-               BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="#284E98"/>
-        </td>
-      </tr>
-    </table>
-    <asp:CustomValidator ID="CVnousuario" runat="server" Display="Dynamic" ErrorMessage="· Usuario incorrecto."/>
+   <form id="miForm" runat="server" style="font-family: Arial, Helvetica, sans-serif; font-size: small; margin-top:5%;">    
+    <div class="col-sm-4 col-sm-offset-4">
+        <div class="panel panel-default" >
+            <div class="page-header" style="margin-top:0px">
+                <center><h1>Aplicación Biblioteca</h1></center>
+            </div>
+            <div class="panel-body" style="background-color:white;">
+                    <p class="form-group">
+                        <label for="labUser" class="col-sm-2 control-label" style="text-align:left;">Email</label>
+                        <asp:TextBox class="form-control" ID="TBemail" runat="server"  Width="75%" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
+                          ControlToValidate="TBemail"
+                          Display="Dynamic" 
+                          ErrorMessage="· Rellene la dirección de su e-mail." 
+                          runat="server" />
+                        <asp:CustomValidator ID="CustomValidator1" runat="server" 
+                          ErrorMessage="· La dirección e-mail no tiene el formato adecuado." 
+                          ClientValidationFunction="ValidarEmail" ControlToValidate="TBemail" />
+                    </p>
+                    <p class="form-group">
+                        <label for="labUser" class="col-sm-2 control-label" style="text-align:left;">Contraseña</label>
+                        <asp:TextBox class="form-control" ID="TBpassw" runat="server"  Width="75%"/>    
+                        <asp:RequiredFieldValidator ID="RFVContraseña" 
+                          ControlToValidate="TBpassw"
+                          ErrorMessage="· Introduzca su contraseña." 
+                          runat="server" Display="Dynamic" />                    
+                    </p>               
+                    
+                    <div class="form-group" style="margin-left:10%;margin-top:5%;">
+                        Recordar <asp:CheckBox ID="CkBpersitente" runat="server" />
+                    </div>   
+                    <div class="col-sm-6 col-sm-offset-3"> 
+                        <asp:Button ID="BTvalidar" OnClick="Validar" Text="Validar" runat="server" BackColor="#66AFE9" BorderColor="#507CD1" BorderStyle="Solid" 
+                            BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="white" />
+                        <asp:Button ID="Btregistrar" runat="server" Text="Registrarse" BackColor="#66AFE9" BorderColor="#507CD1" BorderStyle="Solid" 
+                            BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="white"/>
+                        <asp:CustomValidator ID="CVnousuario" runat="server" Display="Dynamic" ErrorMessage="· Usuario incorrecto."/>
+                        <asp:LinkButton ID="LBanonimo" runat="server" 
+                            PostBackUrl="~/contenidos/anonimo/inicioAn.aspx"
+                            Text="Usuario anónimo" 
+                            CausesValidation="false"/>  
+                    </div>
+            </div>        
+        </div>
+    </div>
     <br />
-    <asp:LinkButton ID="LBanonimo" runat="server" 
-            PostBackUrl="~/contenidos/anonimo/inicioAn.aspx"
-            Text="Usuario anónimo" 
-            CausesValidation="false"/>
+    
   </form>
 </body>
 </html>
