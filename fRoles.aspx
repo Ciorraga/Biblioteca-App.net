@@ -39,7 +39,7 @@
         Texto de búsqueda: 
         <asp:TextBox ID="TBBusq" runat="server" Width="189px"></asp:TextBox>
 &nbsp;&nbsp;
-        <asp:Button ID="uscar" runat="server" Text="Buscar" />
+        <asp:Button ID="Buscar" runat="server" Text="Buscar" />
 
 
     

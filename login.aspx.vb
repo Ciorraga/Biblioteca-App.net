@@ -7,6 +7,12 @@ Partial Class _login
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Limpiar()
+        If Not Request.Cookies("userCookie") Is Nothing Then
+            Dim miCookie As HttpCookie
+            miCookie = Request.Cookies("userCookie")
+            TBemail.Text = miCookie.Values("usuario")
+            TBpassw.Text = miCookie.Values("password")
+        End If
     End Sub
 
     Sub Validar(ByVal sender As Object, ByVal e As EventArgs) Handles BTvalidar.Click
@@ -27,6 +33,16 @@ Partial Class _login
             ' Para validar la página todos los controles de validación tienen que estar a ok,
             ' la validación de este debe realizarse a mano.
             CVnousuario.IsValid = True
+
+            'Escribimos la cookie si el checkbox está marcado
+            If CkBpersitente.Checked Then
+                Dim miCookie As New HttpCookie("userCookie")
+                miCookie.Values("usuario") = TBemail.Text
+                miCookie.Values("password") = TBpassw.Text
+                miCookie.Expires = DateTime.Now.AddMinutes(1)
+                Response.Cookies.Add(miCookie)
+            End If
+
             ' Usuario autenticado. Redirección a la selección del rol de trabajo.
             Response.Redirect("fRoles.aspx")
         Else
@@ -34,6 +50,7 @@ Partial Class _login
             CVnousuario.IsValid = False
         End If
     End Sub
+
 
     Public Sub Limpiar()
         Session("dUsuario") = Nothing

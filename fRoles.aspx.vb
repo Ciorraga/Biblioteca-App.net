@@ -13,13 +13,11 @@ Partial Class _fRoles
                 'Guardamos en una variable de sesión el Rol para habilitar el boton de reservar o no segun su rol
                 rolUser = fila("Rol")
             Next
-        Else
-            Response.Redirect(_control.Redireccion(Roles.GetRolesForUser(us)(0)))
         End If
         'Response.Write(rolUser & " " & us)
     End Sub
 
-    Protected Sub uscar_Click(sender As Object, e As System.EventArgs) Handles uscar.Click
+    Protected Sub Buscar_Click(sender As Object, e As System.EventArgs) Handles Buscar.Click
         Dim rbBusq As String = ""
         Dim DDLBusq As String
         Dim TEXTBusq As String
@@ -32,8 +30,6 @@ Partial Class _fRoles
         End If
         DDLBusq = DDLMaterial.SelectedValue
         TEXTBusq = TBBusq.Text
-
-
 
         Response.Write(rbBusq & "," & DDLBusq & "," & TEXTBusq)
     End Sub

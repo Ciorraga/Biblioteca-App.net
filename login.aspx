@@ -78,11 +78,14 @@ function maximizar()
                             BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="white" />
                         <asp:Button ID="Btregistrar" runat="server" Text="Registrarse" BackColor="#66AFE9" BorderColor="#507CD1" BorderStyle="Solid" 
                             BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="white"/>
-                        <asp:CustomValidator ID="CVnousuario" runat="server" Display="Dynamic" ErrorMessage="· Usuario incorrecto."/>
                         <asp:LinkButton ID="LBanonimo" runat="server" 
                             PostBackUrl="~/contenidos/anonimo/inicioAn.aspx"
                             Text="Usuario anónimo" 
-                            CausesValidation="false"/>  
+                            CausesValidation="false"/>                            
+                    </div>
+                    <br />
+                    <div class="col-sm-4 col-sm-offset-4" style="margin-top:10px;"> 
+                        <asp:CustomValidator ID="CVnousuario" runat="server" Display="Dynamic" ErrorMessage="· Usuario incorrecto."/>                        
                     </div>
             </div>        
         </div>

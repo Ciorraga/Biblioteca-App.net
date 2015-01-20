@@ -56,11 +56,11 @@ Public Class _control
         Return ok
     End Function
 
-    Public Shared Function AddUsuario(ByVal usuario As Integer, ByVal funcion As String) As Boolean
-        ' Añade un usuario a una función.
+    Public Shared Function AddUsuario(ByVal usuario As Integer, ByVal rol As String) As Boolean
+        ' Añade un usuario a un rol.
         Dim ok As Boolean = True
         Try
-            If Not My.User.IsInRole(funcion) Then Roles.AddUserToRole(usuario, funcion) 'Esto apunta el rol que tiene el usuario con el que nos logueamos
+            If Not My.User.IsInRole(rol) Then Roles.AddUserToRole(usuario, rol) 'Esto apunta el rol que tiene el usuario con el que nos logueamos
         Catch ex As Exception
             ok = False
         End Try
@@ -78,30 +78,6 @@ Public Class _control
             ok = False
         End Try
         Return ok
-    End Function
-
-    Public Shared Function Redireccion(ByVal funcion As String) As String
-        ' Se proporciona la página de inicio de cada función específica.
-        Dim pagina As String = Nothing
-        Select Case funcion
-            Case "Administrador"
-                pagina = "contenidos" & "/" & "administrador" & "/" & "inicioAd.aspx"
-            Case "Alumnado"
-                pagina = "contenidos" & "/" & "alumnos" & "/" & "inicioAl.aspx"
-            Case "Dirección"
-                pagina = "contenidos" & "/" & "direccion" & "/" & "inicioDi.aspx"
-            Case "Empresa"
-                pagina = "contenidos" & "/" & "empresa" & "/" & "inicioEm.aspx"
-            Case "Jefatura de Departamento"
-                pagina = "contenidos" & "/" & "jd" & "/" & "inicioJd.aspx"
-            Case "Tutoría Docente"
-                pagina = "contenidos" & "/" & "tutord" & "/" & "inicioTd.aspx"
-            Case "Tutoría Laboral"
-                pagina = "contenidos" & "/" & "tutorl" & "/" & "inicioTl.aspx"
-            Case "Tutoría de Grupo"
-                pagina = "contenidos" & "/" & "tutorg" & "/" & "inicioTg.aspx"
-        End Select
-        Return pagina
     End Function
 
     Public Shared Sub CerrarSesion(ByVal usuario As String) ' Se ejecuta al cerrar sesión (Global.asax)
