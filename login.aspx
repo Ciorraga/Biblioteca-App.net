@@ -43,7 +43,8 @@ function maximizar()
 </head>
 <body onload="maximizar();">
    <form id="miForm" runat="server" style="font-family: Arial, Helvetica, sans-serif; font-size: small; margin-top:5%;">    
-    <div class="col-sm-4 col-sm-offset-4">
+    <div class="col-sm-6 col-sm-offset-3">
+
         <div class="panel panel-default" >
             <div class="page-header" style="margin-top:0px">
                 <center><h1>Aplicación Biblioteca</h1></center>
@@ -77,9 +78,9 @@ function maximizar()
                         <asp:Button ID="BTvalidar" OnClick="Validar" Text="Validar" runat="server" BackColor="#66AFE9" BorderColor="#507CD1" BorderStyle="Solid" 
                             BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="white" />
                         <asp:Button ID="Btregistrar" runat="server" Text="Registrarse" BackColor="#66AFE9" BorderColor="#507CD1" BorderStyle="Solid" 
-                            BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="white"/>
+                            BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" ForeColor="white" CausesValidation="false" PostBackUrl="registro.aspx"/>
                         <asp:LinkButton ID="LBanonimo" runat="server" 
-                            PostBackUrl="~/contenidos/anonimo/inicioAn.aspx"
+                            PostBackUrl="registro.aspx"
                             Text="Usuario anónimo" 
                             CausesValidation="false"/>                            
                     </div>

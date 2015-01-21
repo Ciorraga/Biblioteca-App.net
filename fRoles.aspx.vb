@@ -8,15 +8,12 @@ Partial Class _fRoles
     Dim us As String = Nothing
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        us = Context.User.Identity.Name 'Esto te dice el id con el que estamos trabajando que recogimos antes con  FormsAuthentication.RedirectFromLoginPage(us, CkBpersitente.Checked) 
+        us = Context.User.Identity.Name 'Esto te dice el id con el que estamos trabajando que recogimos antes con  FormsAuthentication.RedirectFromLoginPage(us, CkBpersitente.Checked). Luego lo utilizaremos
         Dim rolUser As String = ""
-        If Roles.GetRolesForUser(us).Count = 0 Then
-            For Each fila As DataRow In Session("dUsuario").Rows
-                'Guardamos en una variable de sesión el Rol para habilitar el boton de reservar o no segun su rol
-                rolUser = fila("Rol")
-            Next
+        ' Si no esta creada la variable de sesión se redirige a Login puesto que están intentando entrar por la URL directamente sin identificar
+        If IsNothing(Session("dUsuario")) Then
+            Response.Redirect("login.aspx")
         End If
-        'Response.Write(rolUser & " " & us)
     End Sub
 
     Protected Sub Buscar_Click(sender As Object, e As System.EventArgs) Handles Buscar.Click

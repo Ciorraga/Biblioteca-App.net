@@ -22,16 +22,9 @@ Partial Class _login
             Limpiar()
             Session("dUsuario") = datosUsuario
             us = datosUsuario.Rows(0).Item(0).ToString ' us contiene el idUsuario
-            'FormsAuthentication.
-            ' Partimos de la base que el navegador del cliente admite la escritura de cookies.   
-            ' El método FormsAuthentication.RedirectFromLoginPage
-            ' emite un vale de autenticación para el usuario us que es guardado en la cookie predeterminada (persistente o no).
-            ' A su vez, redirige al usuario autenticado hacia la dirección URL originalmente solicitada o a la dirección URL predeterminada.
+
             FormsAuthentication.RedirectFromLoginPage(us, CkBpersitente.Checked) 'Esta es la forma para ver si el usuario es correcto
 
-            ' Validación del Custom Validator para el mensaje de usuario incorrecto.
-            ' Para validar la página todos los controles de validación tienen que estar a ok,
-            ' la validación de este debe realizarse a mano.
             CVnousuario.IsValid = True
 
             'Escribimos la cookie si el checkbox está marcado
@@ -60,6 +53,5 @@ Partial Class _login
             FormsAuthentication.SignOut()
         End If
     End Sub
-
 
 End Class
