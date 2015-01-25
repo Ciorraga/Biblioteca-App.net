@@ -20,6 +20,7 @@
     <div class="page-header" style="color:White">
         <h1><center>Aplicación Biblioteca</center></h1>
     </div>
+    <div id="resOk" runat="server" class='alert alert-success' style="display:none"><center>Libro reservado con éxito</center></div>
     <form id="form1" runat="server">
     <div class="col-sm-4 col-sm-offset-4" style="margin-top:5%;background-color:White;border-radius:10px;padding:15px">   
         Seleccione el tipo de material:
@@ -54,69 +55,105 @@
     </div>
     
     
-        <asp:Panel ID="Panel1" runat="server">
-            <asp:ListView ID="LVDatos" runat="server">
+        <asp:Panel ID="Panel1" runat="server" Height="848px">
+            <asp:ListView ID="LVDatos" runat="server" DataKeyNames="isbn" DataSourceID="SqlDataSource1">
 
             <LayoutTemplate>
                 <div class="col-sm-8 col-sm-offset-2" style="border-radius:10px;background-color:White;padding:15px auto;margin-top:5%;">
                 <table id="Traiz" runat="server" class="table">
-                    <tr id="Tr1" runat="server">
-                        <td id="Td1" runat="server">
-                            <table ID="itemPlaceholderContainer" runat="server">
-                                <tr id="Tr2" runat="server">
-                                        <th id="Th1" runat="server" style="width:100px;">
-                                            ¿Reservar?
-                                        </th>
-                                        <th id="Th2"  runat="server">
-                                            ISBN
-                                        </th>
-                                        <th id="Th3" runat="server">
-                                            Título
-                                        </th>
-                                        <th id="Th4" runat="server">
-                                            Autores
-                                        </th>
-                                        <th id="Th5" runat="server">
-                                            Material
-                                        </th>
-                                        <th id="Th6" runat="server">
-                                            Editorial
-                                        </th>
-                                        </tr>
-                                            <tr ID="itemPlaceholder" runat="server" >
-                                        </tr>
-                            </table>
-                         </td>
-                   </tr>
+                    <tr id="Tr4" runat="server" style="">
+                        <th id="Th1" runat="server" style="width:100px;">
+                            ¿Reservar?</th>
+                        <th id="Th7" runat="server">
+                             isbn</th>
+                        <th id="Th8" runat="server">
+                            titulo</th>
+                        <th id="Th9" runat="server">
+                            claseMaterial</th>
+                        <th id="Th10" runat="server">
+                            autores</th>                                
+                        <th id="Th11" runat="server">
+                            editorial</th>                                
+                    </tr>
+                        <tr runat="server" ID="itemPlaceholder">
+                    </tr>
                 </table>
                 </div>
             </LayoutTemplate>
 
-            <ItemTemplate>                        
-                <tr>
+            <ItemTemplate>
+                <tr style="">
                     <td>
-                        <asp:Button ID="Button1" runat="server" Text="Reservar" width="80px"/>
+                        <asp:Button ID="Button1" runat="server" Text="Reservar" width="80px" CommandName="select" />
                     </td>
                     <td>
-                        <asp:Label ID="Lmodulo" runat="server" Text='<%# Eval("isbn") %>'/>
+                        <asp:Label ID="isbnLabel" runat="server" Text='<%# Eval("isbn") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("titulo") %>'/>
+                        <asp:Label ID="tituloLabel" runat="server" Text='<%# Eval("titulo") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("autores") %>'/>
+                        <asp:Label ID="claseMaterialLabel" runat="server" 
+                            Text='<%# Eval("claseMaterial") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("claseMaterial") %>'/>
+                        <asp:Label ID="autoresLabel" runat="server" Text='<%# Eval("autores") %>' />
+                    </td>
+                
                     </td>
                     <td>
-                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("editorial") %>'/>
-                    </td>
+                        <asp:Label ID="editorialLabel" runat="server" Text='<%# Eval("editorial") %>' />
+                    </td>                
                 </tr>
             </ItemTemplate>
+
+            <SelectedItemTemplate>
+                <tr style="">
+                    <td>
+                        <asp:Label ID="isbnLabel" runat="server" Text='<%# Eval("isbn") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="tituloLabel" runat="server" Text='<%# Eval("titulo") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="claseMaterialLabel" runat="server" 
+                            Text='<%# Eval("claseMaterial") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="autoresLabel" runat="server" Text='<%# Eval("autores") %>' />
+                    </td>          
+                    <td>
+                        <asp:Label ID="editorialLabel" runat="server" Text='<%# Eval("editorial") %>' />
+                    </td>
+                
+                </tr>
+            </SelectedItemTemplate>
             </asp:ListView>
-            <br />
         </asp:Panel>
+
+       
+    
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:BibliotecaConnectionString %>" 
+        DeleteCommand="DELETE FROM [Obras] WHERE [isbn] = @isbn" 
+        InsertCommand="INSERT INTO [Obras] ([isbn], [titulo], [autores]) VALUES (@isbn, @titulo, @autores)" 
+        SelectCommand="select * from obras join editoriales on obras.idEditorial = editoriales.idEditorial"        
+        UpdateCommand="UPDATE [Obras] SET [titulo] = @titulo, [autores] = @autores WHERE [isbn] = @isbn">
+        <DeleteParameters>
+            <asp:Parameter Name="isbn" Type="String" />
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="isbn" Type="String" />
+            <asp:Parameter Name="titulo" Type="String" />
+            <asp:Parameter Name="autores" Type="String" />
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="titulo" Type="String" />
+            <asp:Parameter Name="autores" Type="String" />
+            <asp:Parameter Name="isbn" Type="String" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
+    
     
 
     </form>

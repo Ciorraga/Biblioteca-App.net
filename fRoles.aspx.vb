@@ -14,9 +14,11 @@ Partial Class _fRoles
         If IsNothing(Session("dUsuario")) Then
             Response.Redirect("login.aspx")
         End If
+        Panel1.Visible = False
     End Sub
 
     Protected Sub Buscar_Click(sender As Object, e As System.EventArgs) Handles Buscar.Click
+        resOk.Style.Add("display", "none")
         Dim rbBusq As String = ""
         Dim DDLBusq As String
         Dim TEXTBusq As String
@@ -30,11 +32,22 @@ Partial Class _fRoles
         DDLBusq = DDLMaterial.SelectedValue
         TEXTBusq = TBBusq.Text
 
-        Dim miDs As DataSet = _control.obtenerConsulta(DDLBusq, rbBusq, TEXTBusq)
-
-        LVDatos.DataSource = miDs.Tables(0).DefaultView
-        LVDatos.DataBind()
+        'Dim miDs As DataSet = _control.obtenerConsulta(DDLBusq, rbBusq, TEXTBusq)
+        'LVDatos.DataSource = miDs.Tables(0).DefaultView
+        'LVDatos.DataBind()
         Panel1.Visible = True
+
+        SqlDataSource1.SelectCommand = "select obras.isbn,obras.titulo,obras.autores,obras.claseMaterial,editoriales.editorial from obras join editoriales on obras.idEditorial=editoriales.idEditorial where claseMaterial='" & DDLBusq & "' and " & rbBusq & " LIKE '%" & TEXTBusq & "%'"
+        SqlDataSource1.DataBind()
     End Sub
 
+
+
+    Protected Sub LVDatos_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles LVDatos.SelectedIndexChanged
+        Panel1.Visible = False
+        'Response.Write(LVDatos.SelectedValue) Para ver el ISBN (pk del ejemplar) seleccionado con el boton
+        If LVDatos.SelectedValue <> "" Then
+            resOk.Style.Add("display", "block")
+        End If
+    End Sub
 End Class
