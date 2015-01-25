@@ -84,7 +84,7 @@
             <ItemTemplate>
                 <tr style="">
                     <td>
-                        <asp:Button ID="Button1" runat="server" Text="Reservar" width="80px" CommandName="select" Enabled='<%# Eval("disponible") %>'/>
+                        <asp:Button ID="Button1" runat="server" Text="Reservar" width="80px" CommandName="select" Enabled='<%# If(Session("anonimo") = True, "False", Eval("disponible"))%>'/> 
                     </td>
                     <td>
                         <asp:Label ID="isbnLabel" runat="server" Text='<%# Eval("isbn") %>' />

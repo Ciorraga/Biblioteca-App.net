@@ -8,11 +8,11 @@ Partial Class _fRoles
     Dim us As String = Nothing
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        us = Context.User.Identity.Name
+        us = Context.User.Identity.Name        
         ' Si no esta creada la variable de sesión se redirige a Login puesto que están intentando entrar por la URL directamente sin identificar
-        If IsNothing(Session("dUsuario")) Then
+        If IsNothing(Session("dUsuario")) And IsNothing(Session("anonimo")) Then
             Response.Redirect("login.aspx")
-        End If        
+        End If
         Panel1.Visible = False
     End Sub
 
@@ -35,6 +35,7 @@ Partial Class _fRoles
 
         SqlDataSource1.SelectCommand = "select obras.isbn,obras.titulo,obras.autores,obras.claseMaterial,editoriales.editorial,existencias.disponible from obras join editoriales on obras.idEditorial=editoriales.idEditorial join Existencias on Obras.isbn=Existencias.isbn where claseMaterial='" & DDLBusq & "' and " & rbBusq & " LIKE '%" & TEXTBusq & "%'"
         SqlDataSource1.DataBind()
+
     End Sub
 
     Protected Sub LVDatos_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles LVDatos.SelectedIndexChanged

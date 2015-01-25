@@ -47,6 +47,7 @@ Partial Class _login
 
     Public Sub Limpiar()
         Session("dUsuario") = Nothing
+        Session("anonimo") = Nothing
         us = Context.User.Identity.Name
         If us <> Nothing Then
             _control.RemoveUsuarioyRoles(us, Roles.GetRolesForUser(us))
@@ -54,4 +55,8 @@ Partial Class _login
         End If
     End Sub
 
+    Protected Sub BtAnon_Click(sender As Object, e As System.EventArgs) Handles BtAnon.Click
+        Session("anonimo") = True
+        Response.Redirect("fRoles.aspx")
+    End Sub
 End Class
