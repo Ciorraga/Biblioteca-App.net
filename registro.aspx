@@ -46,16 +46,25 @@
                     
                     <p class="form-group">
                         <label for="labUser" class="col-md-2 control-label" style="text-align:left;">Contraseña</label>
-                        <asp:TextBox type="passwrod" class="form-control" ID="TBpassw2" runat="server"  Width="75%"/>    
+                        <asp:TextBox type="password" class="form-control" ID="TBpassw2" runat="server"  Width="75%"/>    
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" 
                           ControlToValidate="TBpassw2"
                           ErrorMessage="· Introduzca su contraseña." 
                           runat="server" Display="Dynamic" />                    
                     </p> 
-                    
+
+                    <p class="form-group">
+                        <label for="labUser" class="col-md-2 control-label" style="text-align:left;">Nombre y apellidos</label>
+                        <asp:TextBox type="text" class="form-control" ID="TBNombre" runat="server"  Width="75%"/>    
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" 
+                          ControlToValidate="TBNombre"
+                          ErrorMessage="· Introduzca su nombre y apellidos" 
+                          runat="server" Display="Dynamic" />                    
+                    </p>   
+
                     <p class="form-group">
                         <label for="labUser" class="col-md-2 control-label" style="text-align:left;">DNI</label>
-                        <asp:TextBox type="passwrod" class="form-control" ID="TBdni" runat="server"  Width="75%"/>    
+                        <asp:TextBox type="text" class="form-control" ID="TBdni" runat="server"  Width="75%"/>    
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" 
                           ControlToValidate="TBdni"
                           ErrorMessage="· Introduzca su DNI" 

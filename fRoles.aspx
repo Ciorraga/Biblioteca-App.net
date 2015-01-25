@@ -65,15 +65,15 @@
                         <th id="Th1" runat="server" style="width:100px;">
                             ¿Reservar?</th>
                         <th id="Th7" runat="server">
-                             isbn</th>
+                             ISBN</th>
                         <th id="Th8" runat="server">
-                            titulo</th>
+                            Título</th>
                         <th id="Th9" runat="server">
-                            claseMaterial</th>
+                            Tipo Material</th>
                         <th id="Th10" runat="server">
-                            autores</th>                                
+                            Autores</th>                                
                         <th id="Th11" runat="server">
-                            editorial</th>                                
+                            Editorial</th>                                
                     </tr>
                         <tr runat="server" ID="itemPlaceholder">
                     </tr>
@@ -84,7 +84,7 @@
             <ItemTemplate>
                 <tr style="">
                     <td>
-                        <asp:Button ID="Button1" runat="server" Text="Reservar" width="80px" CommandName="select" />
+                        <asp:Button ID="Button1" runat="server" Text="Reservar" width="80px" CommandName="select" Enabled='<%# Eval("disponible") %>'/>
                     </td>
                     <td>
                         <asp:Label ID="isbnLabel" runat="server" Text='<%# Eval("isbn") %>' />

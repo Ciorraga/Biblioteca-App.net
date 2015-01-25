@@ -28,7 +28,7 @@ Partial Class _login
             CVnousuario.IsValid = True
 
             'Escribimos la cookie si el checkbox está marcado
-            If CkBpersitente.Checked Then
+            If CkBpersitente.Checked Then                
                 Dim miCookie As New HttpCookie("userCookie")
                 miCookie.Values("usuario") = TBemail.Text
                 miCookie.Values("password") = TBpassw.Text
