@@ -6,13 +6,13 @@
 <head runat="server">
     <title>Aplicación Biblioteca</title>
     <script src="https://code.jquery.com/jquery.js"></script>        
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css"/>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <script src="js/bootstrap.min.js"></script>
     <style>
         body
         {
-            background-color:#c9c7c7;
+            background-color:#000078;
             }
     </style>
 </head>
@@ -22,20 +22,16 @@
     </div>
     <div id="resOk" runat="server" class='alert alert-success' style="display:none"><center>Libro reservado con éxito</center></div>
     <form id="form1" runat="server">
-    <div class="col-sm-4 col-sm-offset-4" style="margin-top:5%;background-color:White;border-radius:10px;padding:15px">   
-        Seleccione el tipo de material:
-        <asp:DropDownList ID="DDLMaterial" runat="server" AutoPostBack="True" 
+    <div class="col-sm-4 col-sm-offset-4" style="margin-top:5%;background-color:White;border-radius:10px;padding:15px;border:1px solid black">       
+        <center><asp:DropDownList ID="DDLMaterial" runat="server" AutoPostBack="True" 
             DataSourceID="SQLDSClaseMaterial" DataTextField="claseMaterial" 
             DataValueField="claseMaterial" AppendDataBoundItems="true"  >
             <asp:ListItem Text="Seleccione un tipo de material" Value="*"></asp:ListItem>
-        </asp:DropDownList>
+        </asp:DropDownList></center>
         <asp:SqlDataSource ID="SQLDSClaseMaterial" runat="server" 
             ConnectionString="<%$ ConnectionStrings:BibliotecaConnectionString %>" 
             SelectCommand="select DISTINCT claseMaterial from Obras">
         </asp:SqlDataSource>    
-    
-        <br />
-        <br />
         Buscar por:<br />
         <asp:RadioButton ID="RB1" runat="server" Checked="True" GroupName="AuTitEd" 
             Text="Autor" value="autores"/>
@@ -51,13 +47,11 @@
         <asp:TextBox ID="TBBusq" runat="server" Width="189px"></asp:TextBox>
 &nbsp;&nbsp;
         <asp:Button ID="Buscar" runat="server" Text="Buscar" />
-
     </div>
     
     
         <asp:Panel ID="Panel1" runat="server" Height="848px">
-            <asp:ListView ID="LVDatos" runat="server" DataKeyNames="isbn" DataSourceID="SqlDataSource1">
-
+            <asp:ListView ID="LVDatos" runat="server" DataKeyNames="isbn" DataSourceID="SqlDataSource1" style="border:1px solid black">
             <LayoutTemplate>
                 <div class="col-sm-8 col-sm-offset-2" style="border-radius:10px;background-color:White;padding:15px auto;margin-top:5%;">
                 <table id="Traiz" runat="server" class="table">

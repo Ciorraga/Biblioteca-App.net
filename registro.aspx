@@ -8,9 +8,9 @@
 
     <script src="https://code.jquery.com/jquery.js"></script>
         
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css"/>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+  <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <div id="userOk" runat="server" class='alert alert-success' style="display:none"><center>Usuario creado correctamente</center></div>

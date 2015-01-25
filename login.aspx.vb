@@ -21,9 +21,9 @@ Partial Class _login
         If datosUsuario.Rows.Count <> 0 Then
             Limpiar()
             Session("dUsuario") = datosUsuario
-            us = datosUsuario.Rows(0).Item(0).ToString ' us contiene el idUsuario
+            us = datosUsuario.Rows(0).Item(0).ToString
 
-            FormsAuthentication.RedirectFromLoginPage(us, CkBpersitente.Checked) 'Esta es la forma para ver si el usuario es correcto
+            FormsAuthentication.RedirectFromLoginPage(us, CkBpersitente.Checked)
 
             CVnousuario.IsValid = True
 
