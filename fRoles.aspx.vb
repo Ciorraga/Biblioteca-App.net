@@ -46,7 +46,7 @@ Partial Class _fRoles
 
         'Para realizar la inserción en la tabla préstamos necesitare el idLector, el idEjemplar, y la fecha actual, y FALSE para el campo anulado
         Dim idLector As Integer = _control.obtenId("select idLector from Lectores where email='" & nombreUs & "'", "BibliotecaConnectionString")
-        Dim idEjemplar As Integer = _control.obtenId("select TOP 1 idEjemplar from Existencias where isbn='" & LVDatos.SelectedValue & "'", "BibliotecaConnectionString")
+        Dim idEjemplar As Integer = _control.obtenId("select idEjemplar from Existencias where isbn='" & LVDatos.SelectedValue & "' and disponible='true'", "BibliotecaConnectionString")
         Dim fecha As DateTime = DateTime.Now
 
         Dim ins As Integer = _control.insertaPrestamo(idLector, idEjemplar, fecha)
@@ -54,7 +54,7 @@ Partial Class _fRoles
         'Ahora, vamos a quitarlo como disponible para reservarlo en la tabla Existencias.
         Dim res As Object = _control.actualizaEx("update Existencias set disponible='false' where idEjemplar=" & idEjemplar)
 
-        'Response.Write(LVDatos.SelectedValue & "-" & nombreUs & "-" & idLector & "-" & idEjemplar & "-" & d)
+        'Response.Write(LVDatos.SelectedValue & "-" & nombreUs & "-" & idLector & "-" & idEjemplar)
         If LVDatos.SelectedValue <> "" Then
             resOk.Style.Add("display", "block")
         End If
