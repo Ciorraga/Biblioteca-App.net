@@ -1,9 +1,9 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="fRoles.aspx.vb" Inherits="_fRoles" Debug="true" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Principal.aspx.vb" Inherits="_Principal" Debug="true" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title>Aplicación Biblioteca</title>
     <script src="https://code.jquery.com/jquery.js"></script>        
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -54,10 +54,8 @@
             <asp:ListView ID="LVDatos" runat="server" DataKeyNames="isbn" DataSourceID="SqlDataSource1" style="border:1px solid black">
             <LayoutTemplate>
                 <div class="col-sm-8 col-sm-offset-2" style="border-radius:10px;background-color:White;padding:15px auto;margin-top:5%;">
-                <table id="Traiz" runat="server" class="table">
-                    <tr id="Tr4" runat="server" style="">
-                        <th id="Th1" runat="server" style="width:100px;">
-                            ¿Reservar?</th>
+                <table id="Traiz" runat="server" class="table table-hover ">
+                    <tr id="Tr4" runat="server" style="">                        
                         <th id="Th7" runat="server">
                              ISBN</th>
                         <th id="Th8" runat="server">
@@ -67,7 +65,9 @@
                         <th id="Th10" runat="server">
                             Autores</th>                                
                         <th id="Th11" runat="server">
-                            Editorial</th>                                
+                            Editorial</th>               
+                        <th id="Th1" runat="server" style="width:100px;">
+                            ¿Reservar?</th>                 
                     </tr>
                         <tr runat="server" ID="itemPlaceholder">
                     </tr>
@@ -76,10 +76,7 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <tr style="">
-                    <td>
-                        <asp:Button ID="Button1" runat="server" Text="Reservar" width="80px" CommandName="select" Enabled='<%# If(Session("anonimo") = True, "False", Eval("disponible"))%>'/> 
-                    </td>
+                <tr style="">                    
                     <td>
                         <asp:Label ID="isbnLabel" runat="server" Text='<%# Eval("isbn") %>' />
                     </td>
@@ -97,7 +94,10 @@
                     </td>
                     <td>
                         <asp:Label ID="editorialLabel" runat="server" Text='<%# Eval("editorial") %>' />
-                    </td>                
+                    </td>      
+                    <td>
+                        <asp:Button ID="Button1" runat="server" Text="Reservar" width="80px" CommandName="select" Enabled='<%# If(Session("anonimo") = True, "False", Eval("disponible"))%>'/> 
+                    </td>          
                 </tr>
             </ItemTemplate>
 

@@ -2,6 +2,7 @@
 Imports System.Data
 
 Partial Class registro
+    ' SE RECUERDA QUE LA BBDD TIENE ALGUNAS RESTRICCIONES EN ALGUNOS CAMPOS DE ESTE REGISTRO. SI NO INSERTA EL USUARIO,ES PORQUE ESTA INCUMPLIENDO ALGUNA RESTRICCION
     Inherits System.Web.UI.Page
 
     Protected Sub Btregistrar_Click(sender As Object, e As System.EventArgs) Handles Btregistrar.Click

@@ -1,18 +1,16 @@
-﻿Option Explicit Off
-Imports System.Data
+﻿Imports System.Data
 Imports System.Web.Security
 Imports System.Web.UI.WebControls
 
-Partial Class _fRoles
+Partial Class _Principal
     Inherits System.Web.UI.Page
     Dim us As String = Nothing
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        us = Context.User.Identity.Name        
-        ' Si no esta creada la variable de sesión se redirige a Login puesto que están intentando entrar por la URL directamente sin identificar
         If IsNothing(Session("dUsuario")) And IsNothing(Session("anonimo")) Then
             Response.Redirect("login.aspx")
         End If
+        Response.Write(Session("dUsuario"))
         Panel1.Visible = False
     End Sub
 
@@ -40,9 +38,8 @@ Partial Class _fRoles
 
     Protected Sub LVDatos_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles LVDatos.SelectedIndexChanged
         Panel1.Visible = False
-
-        Dim dt As DataTable = Session("dUsuario")
-        Dim nombreUs As String = dt.Rows(0).Item(1).ToString 'Extraemos el nombre de usuario para realizar el préstamo
+        'Extraemos el nombre de usuario que va a realizar el préstamo
+        Dim nombreUs = Session("dUsuario")
 
         'Para realizar la inserción en la tabla préstamos necesitare el idLector, el idEjemplar, y la fecha actual, y FALSE para el campo anulado
         Dim idLector As Integer = _control.obtenId("select idLector from Lectores where email='" & nombreUs & "'", "BibliotecaConnectionString")
@@ -60,6 +57,5 @@ Partial Class _fRoles
         End If
 
     End Sub
-
 
 End Class
